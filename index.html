@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase - Modern E-commerce Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="loader-spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><i class="fas fa-shopping-bag"></i> ShopEase</h2>
+            </div>
+            
+            <div class="nav-search">
+                <input type="text" id="searchInput" placeholder="Search products...">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="nav-btn" id="wishlistBtn">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge" id="wishlistCount">0</span>
+                </button>
+                <button class="nav-btn" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cartCount">0</span>
+                </button>
+                <button class="nav-btn" id="userBtn">
+                    <i class="fas fa-user"></i>
+                </button>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-search">
+                <input type="text" placeholder="Search products...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="#" onclick="app.showSection('home')">Home</a></li>
+                <li><a href="#" onclick="app.showSection('categories')">Categories</a></li>
+                <li><a href="#" onclick="app.showSection('products')">Products</a></li>
+                <li><a href="#" onclick="app.showSection('about')">About</a></li>
+                <li><a href="#" onclick="app.showSection('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Navigation Breadcrumb -->
+    <div class="breadcrumb-container" id="breadcrumbContainer" style="display: none;">
+        <div class="container">
+            <nav class="breadcrumb" id="breadcrumb">
+                <a href="#" onclick="app.showSection('home')" class="breadcrumb-item">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current" id="breadcrumbCurrent"></span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <!-- Hero Banner -->
+            <div class="hero-banner">
+                <div class="hero-slider">
+                    <div class="slide active">
+                        <div class="slide-content">
+                            <h1>Summer Collection 2024</h1>
+                            <p>Discover the latest trends in fashion</p>
+                            <button class="cta-btn">Shop Now</button>
+                        </div>
+                        <div class="slide-image">
+                            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop" alt="Summer Collection">
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-content">
+                            <h1>Electronics Sale</h1>
+                            <p>Up to 50% off on all electronics</p>
+                            <button class="cta-btn">Explore Deals</button>
+                        </div>
+                        <div class="slide-image">
+                            <img src="https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=800&h=600&fit=crop" alt="Electronics">
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-content">
+                            <h1>Home & Living</h1>
+                            <p>Transform your space with our collection</p>
+                            <button class="cta-btn">Browse Now</button>
+                        </div>
+                        <div class="slide-image">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop" alt="Home Decor">
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-dots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                </div>
+            </div>
+
+            <!-- Featured Categories -->
+            <div class="featured-categories">
+                <div class="container">
+                    <h2 class="section-title">Shop by Category</h2>
+                    <div class="categories-grid">
+                        <div class="category-card" data-category="electronics">
+                            <div class="category-icon">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <h3>Electronics</h3>
+                            <p>Latest gadgets and tech</p>
+                        </div>
+                        <div class="category-card" data-category="fashion">
+                            <div class="category-icon">
+                                <i class="fas fa-tshirt"></i>
+                            </div>
+                            <h3>Fashion</h3>
+                            <p>Trendy clothing & accessories</p>
+                        </div>
+                        <div class="category-card" data-category="home">
+                            <div class="category-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h3>Home & Living</h3>
+                            <p>Furniture & decor</p>
+                        </div>
+                        <div class="category-card" data-category="sports">
+                            <div class="category-icon">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <h3>Sports</h3>
+                            <p>Fitness & outdoor gear</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Products -->
+            <div class="featured-products">
+                <div class="container">
+                    <h2 class="section-title">Featured Products</h2>
+                    <div class="products-grid" id="featuredProducts">
+                        <!-- Products will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Special Offers -->
+            <div class="special-offers">
+                <div class="container">
+                    <h2 class="section-title">Special Offers</h2>
+                    <div class="offers-grid">
+                        <div class="offer-card">
+                            <div class="offer-badge">50% OFF</div>
+                            <h3>Flash Sale</h3>
+                            <p>Limited time offer on selected items</p>
+                            <button class="offer-btn">Shop Now</button>
+                        </div>
+                        <div class="offer-card">
+                            <div class="offer-badge">Free Shipping</div>
+                            <h3>Order Today</h3>
+                            <p>Free shipping on orders over $50</p>
+                            <button class="offer-btn">Learn More</button>
+                        </div>
+                        <div class="offer-card">
+                            <div class="offer-badge">New Arrivals</div>
+                            <h3>Latest Collection</h3>
+                            <p>Be the first to get new products</p>
+                            <button class="offer-btn">Explore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="newsletter">
+                <div class="container">
+                    <div class="newsletter-content">
+                        <h2>Stay Updated</h2>
+                        <p>Subscribe to our newsletter for exclusive deals and updates</p>
+                        <form class="newsletter-form" id="newsletterForm">
+                            <input type="email" placeholder="Enter your email" required>
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <button class="back-btn" onclick="app.showSection('home')">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                    <h1>All Products</h1>
+                </div>
+                <div class="products-header">
+                    <div class="products-filters">
+                        <select id="categoryFilter">
+                            <option value="">All Categories</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="home">Home & Living</option>
+                            <option value="sports">Sports</option>
+                        </select>
+                        <select id="priceFilter">
+                            <option value="">All Prices</option>
+                            <option value="0-50">$0 - $50</option>
+                            <option value="50-100">$50 - $100</option>
+                            <option value="100-200">$100 - $200</option>
+                            <option value="200+">$200+</option>
+                        </select>
+                        <select id="sortFilter">
+                            <option value="default">Default</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name">Name A-Z</option>
+                            <option value="rating">Highest Rated</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="products-grid" id="allProducts">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section id="categories" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <button class="back-btn" onclick="app.showSection('home')">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                    <h1>Categories</h1>
+                </div>
+                <div class="categories-list">
+                    <div class="category-item" data-category="electronics">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=300&h=200&fit=crop" alt="Electronics">
+                        </div>
+                        <div class="category-info">
+                            <h3>Electronics</h3>
+                            <p>Laptops, smartphones, tablets, and more</p>
+                            <span class="product-count">150+ products</span>
+                        </div>
+                    </div>
+                    <div class="category-item" data-category="fashion">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=300&h=200&fit=crop" alt="Fashion">
+                        </div>
+                        <div class="category-info">
+                            <h3>Fashion</h3>
+                            <p>Clothing, shoes, accessories, and jewelry</p>
+                            <span class="product-count">300+ products</span>
+                        </div>
+                    </div>
+                    <div class="category-item" data-category="home">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=200&fit=crop" alt="Home & Living">
+                        </div>
+                        <div class="category-info">
+                            <h3>Home & Living</h3>
+                            <p>Furniture, decor, kitchen, and garden</p>
+                            <span class="product-count">200+ products</span>
+                        </div>
+                    </div>
+                    <div class="category-item" data-category="sports">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop" alt="Sports">
+                        </div>
+                        <div class="category-info">
+                            <h3>Sports</h3>
+                            <p>Fitness equipment, outdoor gear, and sports apparel</p>
+                            <span class="product-count">100+ products</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Section -->
+        <section id="cart" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <button class="back-btn" onclick="app.showSection('home')">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                    <h1>Shopping Cart</h1>
+                </div>
+                <div class="cart-content">
+                    <div class="cart-items" id="cartItems">
+                        <!-- Cart items will be loaded here -->
+                        <div class="empty-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <h3>Your cart is empty</h3>
+                            <p>Add some products to get started</p>
+                            <button class="btn-primary" onclick="app.showSection('home')">Continue Shopping</button>
+                        </div>
+                    </div>
+                    <div class="cart-summary" id="cartSummary">
+                        <h3>Order Summary</h3>
+                        <div class="summary-item">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Shipping:</span>
+                            <span id="shipping">$5.99</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total:</span>
+                            <span id="total">$0.00</span>
+                        </div>
+                        <button class="btn-primary checkout-btn" id="checkoutBtn" disabled>Proceed to Checkout</button>
+                        <button class="btn-secondary continue-btn" onclick="app.showSection('home')">Continue Shopping</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkout Section -->
+        <section id="checkout" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <button class="back-btn" onclick="app.showSection('cart')">
+                        <i class="fas fa-arrow-left"></i> Back to Cart
+                    </button>
+                    <h1>Checkout</h1>
+                </div>
+                <div class="checkout-content">
+                    <div class="checkout-form">
+                        <div class="form-section">
+                            <h3>Billing Information</h3>
+                            <form id="billingForm">
+                                <div class="form-row">
+                                    <input type="text" placeholder="First Name" required>
+                                    <input type="text" placeholder="Last Name" required>
+                                </div>
+                                <input type="email" placeholder="Email Address" required>
+                                <input type="tel" placeholder="Phone Number" required>
+                                <input type="text" placeholder="Address" required>
+                                <div class="form-row">
+                                    <input type="text" placeholder="City" required>
+                                    <input type="text" placeholder="ZIP Code" required>
+                                </div>
+                                <select required>
+                                    <option value="">Select Country</option>
+                                    <option value="US">United States</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="UK">United Kingdom</option>
+                                </select>
+                            </form>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Shipping Information</h3>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="sameAsBilling">
+                                <span class="checkmark"></span>
+                                Same as billing address
+                            </label>
+                            <form id="shippingForm">
+                                <div class="form-row">
+                                    <input type="text" placeholder="First Name" required>
+                                    <input type="text" placeholder="Last Name" required>
+                                </div>
+                                <input type="text" placeholder="Address" required>
+                                <div class="form-row">
+                                    <input type="text" placeholder="City" required>
+                                    <input type="text" placeholder="ZIP Code" required>
+                                </div>
+                                <select required>
+                                    <option value="">Select Country</option>
+                                    <option value="US">United States</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="UK">United Kingdom</option>
+                                </select>
+                            </form>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Payment Method</h3>
+                            <div class="payment-methods">
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="card" checked>
+                                    <span class="payment-card">
+                                        <i class="fas fa-credit-card"></i>
+                                        Credit/Debit Card
+                                    </span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="cod">
+                                    <span class="payment-card">
+                                        <i class="fas fa-money-bill"></i>
+                                        Cash on Delivery
+                                    </span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="upi">
+                                    <span class="payment-card">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        UPI Payment
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="card-details" id="cardDetails">
+                                <input type="text" placeholder="Card Number" required>
+                                <div class="form-row">
+                                    <input type="text" placeholder="MM/YY" required>
+                                    <input type="text" placeholder="CVV" required>
+                                </div>
+                                <input type="text" placeholder="Cardholder Name" required>
+                            </div>
+                        </div>
+
+                        <button class="btn-primary place-order-btn" id="placeOrderBtn">Place Order</button>
+                    </div>
+
+                    <div class="order-summary">
+                        <h3>Order Summary</h3>
+                        <div class="order-items" id="orderItems">
+                            <!-- Order items will be loaded here -->
+                        </div>
+                        <div class="order-totals">
+                            <div class="summary-item">
+                                <span>Subtotal:</span>
+                                <span id="orderSubtotal">$0.00</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Shipping:</span>
+                                <span id="orderShipping">$5.99</span>
+                            </div>
+                            <div class="summary-item total">
+                                <span>Total:</span>
+                                <span id="orderTotal">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Section -->
+        <section id="user" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <button class="back-btn" onclick="app.showSection('home')">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                    <h1>My Account</h1>
+                </div>
+                <div class="user-content">
+                    <div class="user-sidebar">
+                        <div class="user-profile">
+                            <div class="profile-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3 id="userName">Guest User</h3>
+                            <p id="userEmail">guest@example.com</p>
+                        </div>
+                        <nav class="user-nav">
+                            <button class="user-nav-item active" data-tab="profile">Profile</button>
+                            <button class="user-nav-item" data-tab="orders">Orders</button>
+                            <button class="user-nav-item" data-tab="wishlist">Wishlist</button>
+                            <button class="user-nav-item" data-tab="settings">Settings</button>
+                        </nav>
+                    </div>
+
+                    <div class="user-main">
+                        <!-- Profile Tab -->
+                        <div class="user-tab active" id="profileTab">
+                            <h2>Profile Information</h2>
+                            <form class="profile-form">
+                                <div class="form-row">
+                                    <input type="text" placeholder="First Name" value="John">
+                                    <input type="text" placeholder="Last Name" value="Doe">
+                                </div>
+                                <input type="email" placeholder="Email" value="john.doe@example.com">
+                                <input type="tel" placeholder="Phone" value="+1 234 567 8900">
+                                <textarea placeholder="Address" rows="3">123 Main St, City, State 12345</textarea>
+                                <button type="submit" class="btn-primary">Update Profile</button>
+                            </form>
+                        </div>
+
+                        <!-- Orders Tab -->
+                        <div class="user-tab" id="ordersTab">
+                            <h2>Order History</h2>
+                            <div class="orders-list">
+                                <div class="order-item">
+                                    <div class="order-header">
+                                        <span class="order-id">#ORD-001</span>
+                                        <span class="order-date">Jan 15, 2024</span>
+                                        <span class="order-status delivered">Delivered</span>
+                                    </div>
+                                    <div class="order-products">
+                                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&h=100&fit=crop" alt="Product">
+                                        <div class="product-info">
+                                            <h4>Wireless Headphones</h4>
+                                            <p>Quantity: 1</p>
+                                        </div>
+                                        <span class="product-price">$99.99</span>
+                                    </div>
+                                    <div class="order-total">Total: $105.98</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wishlist Tab -->
+                        <div class="user-tab" id="wishlistTab">
+                            <h2>Wishlist</h2>
+                            <div class="wishlist-items" id="wishlistItems">
+                                <!-- Wishlist items will be loaded here -->
+                            </div>
+                        </div>
+
+                        <!-- Settings Tab -->
+                        <div class="user-tab" id="settingsTab">
+                            <h2>Account Settings</h2>
+                            <form class="settings-form">
+                                <div class="setting-group">
+                                    <h4>Change Password</h4>
+                                    <input type="password" placeholder="Current Password">
+                                    <input type="password" placeholder="New Password">
+                                    <input type="password" placeholder="Confirm New Password">
+                                    <button type="submit" class="btn-primary">Update Password</button>
+                                </div>
+                                <div class="setting-group">
+                                    <h4>Email Notifications</h4>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" checked>
+                                        <span class="checkmark"></span>
+                                        Order updates
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" checked>
+                                        <span class="checkmark"></span>
+                                        Newsletter
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                        Promotional offers
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <button class="back-btn" onclick="app.showSection('home')">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                    <h1>Contact Us</h1>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Address</h4>
+                                <p>123 Commerce Street<br>Business District, NY 10001</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>support@shopease.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Business Hours</h4>
+                                <p>Mon-Fri: 9AM-6PM<br>Sat-Sun: 10AM-4PM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3>Send us a Message</h3>
+                        <form id="contactForm">
+                            <div class="form-row">
+                                <input type="text" placeholder="Your Name" required>
+                                <input type="email" placeholder="Your Email" required>
+                            </div>
+                            <input type="text" placeholder="Subject" required>
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                            <button type="submit" class="btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <button class="back-btn" onclick="app.showSection('home')">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                    <h1>About ShopEase</h1>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Our Mission</h2>
+                        <p>At ShopEase, we believe in making shopping simple, enjoyable, and accessible to everyone. Our mission is to provide a seamless e-commerce experience with the latest products, competitive prices, and exceptional customer service.</p>
+                        
+                        <h2>Our Vision</h2>
+                        <p>To become the world's most trusted online marketplace, connecting customers with quality products while supporting local and global businesses in their digital transformation journey.</p>
+                        
+                        <h2>Why Choose Us?</h2>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Wide selection of quality products</li>
+                            <li><i class="fas fa-check"></i> Competitive pricing and regular deals</li>
+                            <li><i class="fas fa-check"></i> Fast and reliable shipping</li>
+                            <li><i class="fas fa-check"></i> 24/7 customer support</li>
+                            <li><i class="fas fa-check"></i> Secure payment processing</li>
+                            <li><i class="fas fa-check"></i> Easy returns and exchanges</li>
+                        </ul>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <h3>10K+</h3>
+                            <p>Happy Customers</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>1M+</h3>
+                            <p>Products Sold</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>50+</h3>
+                            <p>Countries Served</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>99%</h3>
+                            <p>Customer Satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section">
+            <div class="container">
+                <h1>Frequently Asked Questions</h1>
+                <div class="faq-content">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How do I place an order?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Simply browse our products, add items to your cart, and proceed to checkout. Fill in your shipping and payment details, then confirm your order.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What payment methods do you accept?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We accept all major credit cards (Visa, MasterCard, American Express), PayPal, UPI payments, and cash on delivery.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How long does shipping take?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Standard shipping takes 3-5 business days, while express shipping takes 1-2 business days. Free shipping is available on orders over $50.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can I return or exchange items?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we offer a 30-day return policy for most items. Items must be in original condition with tags attached. Contact our support team to initiate a return.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How can I track my order?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Once your order ships, you'll receive a tracking number via email. You can also track your order by logging into your account and visiting the Orders section.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-shopping-bag"></i> ShopEase</h3>
+                    <p>Your trusted online shopping destination for quality products at great prices.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to get updates on new products and exclusive offers.</p>
+                    <form class="footer-newsletter">
+                        <input type="email" placeholder="Your email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ShopEase. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Messages -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-body" id="modalBody">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Login/Register Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content auth-modal">
+            <span class="close">&times;</span>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="register">Register</button>
+            </div>
+            <div class="auth-content">
+                <form class="auth-form" id="loginForm">
+                    <h2>Welcome Back</h2>
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit" class="btn-primary">Login</button>
+                    <p class="auth-switch">Don't have an account? <a href="#" data-tab="register">Register</a></p>
+                </form>
+                <form class="auth-form" id="registerForm">
+                    <h2>Create Account</h2>
+                    <div class="form-row">
+                        <input type="text" placeholder="First Name" required>
+                        <input type="text" placeholder="Last Name" required>
+                    </div>
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <input type="password" placeholder="Confirm Password" required>
+                    <button type="submit" class="btn-primary">Register</button>
+                    <p class="auth-switch">Already have an account? <a href="#" data-tab="login">Login</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
